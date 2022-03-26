@@ -29,7 +29,16 @@ class RegexProcessor:
         response = self.preprocess()
         if len(response) == 3:
             pattern, repl, flags = response
-            return Regex(self.message, pattern, repl, flags).sub()
+            x = Regex(self.message, pattern, repl, flags).sub()
+            return x
         elif len(response) == 2:
             pattern, repl = response
-            return Regex(self.message, pattern, repl).sub()
+            x = Regex(self.message, pattern, repl).sub()
+            return x
+        else:
+            return "Error: Invalid string: {}".format(self.string)
+
+
+if __name__ == "__main__":
+    rgx = RegexProcessor("s//bar//g/asd", "foo")
+    print(rgx.process())

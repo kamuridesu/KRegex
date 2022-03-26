@@ -40,10 +40,13 @@ class Regex:
         )
 
     def sub(self, escape_html=False):
-        return re.sub(
-            self.pattern,
-            self.repl,
-            self.string,
-            flags=self.flags,
-            count=self.count
-        )
+        try:
+            return re.sub(
+                self.pattern,
+                self.repl,
+                self.string,
+                flags=self.flags,
+                count=self.count
+            )
+        except re.error as e:
+            return "Error: {}".format(e)
